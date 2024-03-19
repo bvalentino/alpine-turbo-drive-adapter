@@ -38,7 +38,7 @@ export default class Bridge {
         if (document.documentElement.hasAttribute('data-turbo-preview')) {
           return
         }
-        (event.detail.newBody || event.detail.newElement).querySelectorAll('[data-alpine-generated-me],[x-cloak]').forEach((el) => {
+        event.detail.newBody.querySelectorAll('[data-alpine-generated-me],[x-cloak]').forEach((el) => {
           if (el.hasAttribute('x-cloak')) {
             el.setAttribute('data-alpine-was-cloaked', el.getAttribute('x-cloak') ?? '')
           }
@@ -87,8 +87,8 @@ export default class Bridge {
     }
 
     document.addEventListener('turbo:render', renderCallback)
-    document.addEventListener('turbo:morph', beforeRenderCallback)
     document.addEventListener('turbo:before-render', beforeRenderCallback)
+    document.addEventListener('turbo:morph', beforeCacheCallback)
     document.addEventListener('turbo:before-cache', beforeCacheCallback)
   }
 }
