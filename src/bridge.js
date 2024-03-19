@@ -66,7 +66,7 @@ export default class Bridge {
           if (el.hasAttribute('x-if') && el._x_currentIfEl) {
             el._x_currentIfEl.setAttribute('data-alpine-generated-me', true)
           }
-          
+
           if (el.hasAttribute('x-teleport') && el._x_teleport) {
             el._x_teleport.setAttribute('data-alpine-generated-me', true)
           }
@@ -87,6 +87,7 @@ export default class Bridge {
     }
 
     document.addEventListener('turbo:render', renderCallback)
+    document.addEventListener('turbo:morph', beforeRenderCallback)
     document.addEventListener('turbo:before-render', beforeRenderCallback)
     document.addEventListener('turbo:before-cache', beforeCacheCallback)
   }
