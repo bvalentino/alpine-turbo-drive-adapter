@@ -53,7 +53,7 @@ class Bridge {
         if (document.documentElement.hasAttribute('data-turbo-preview')) {
           return;
         }
-        event.detail.newBody.querySelectorAll('[data-alpine-generated-me],[x-cloak]').forEach(el => {
+        (event.detail.newBody || event.detail.newElement).querySelectorAll('[data-alpine-generated-me],[x-cloak]').forEach(el => {
           if (el.hasAttribute('x-cloak')) {
             var _el$getAttribute2;
             el.setAttribute('data-alpine-was-cloaked', (_el$getAttribute2 = el.getAttribute('x-cloak')) !== null && _el$getAttribute2 !== void 0 ? _el$getAttribute2 : '');
