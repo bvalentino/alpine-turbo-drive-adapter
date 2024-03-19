@@ -68,7 +68,7 @@ class Bridge {
     };
     var beforeCacheCallback = event => {
       window.Alpine.mutateDom(() => {
-        document.body.querySelectorAll('[x-for],[x-if],[x-teleport],[data-alpine-was-cloaked]').forEach(el => {
+        (event.type === 'turbo:morph' ? event.detail.newElement : document.body).querySelectorAll('[x-for],[x-if],[x-teleport],[data-alpine-was-cloaked]').forEach(el => {
           if (el.hasAttribute('data-alpine-was-cloaked')) {
             var _el$getAttribute3;
             el.setAttribute('x-cloak', (_el$getAttribute3 = el.getAttribute('data-alpine-was-cloaked')) !== null && _el$getAttribute3 !== void 0 ? _el$getAttribute3 : '');

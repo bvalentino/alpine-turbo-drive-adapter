@@ -53,7 +53,7 @@ export default class Bridge {
 
     const beforeCacheCallback = (event) => {
       window.Alpine.mutateDom(() => {
-        document.body.querySelectorAll('[x-for],[x-if],[x-teleport],[data-alpine-was-cloaked]').forEach((el) => {
+        (event.type === 'turbo:morph' ? event.detail.newElement : document.body).querySelectorAll('[x-for],[x-if],[x-teleport],[data-alpine-was-cloaked]').forEach((el) => {
           if (el.hasAttribute('data-alpine-was-cloaked')) {
             el.setAttribute('x-cloak', el.getAttribute('data-alpine-was-cloaked') ?? '')
             el.removeAttribute('data-alpine-was-cloaked')

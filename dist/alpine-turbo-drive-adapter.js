@@ -117,7 +117,7 @@
         };
         var beforeCacheCallback = function beforeCacheCallback(event) {
           window.Alpine.mutateDom(function () {
-            document.body.querySelectorAll('[x-for],[x-if],[x-teleport],[data-alpine-was-cloaked]').forEach(function (el) {
+            (event.type === 'turbo:morph' ? event.detail.newElement : document.body).querySelectorAll('[x-for],[x-if],[x-teleport],[data-alpine-was-cloaked]').forEach(function (el) {
               if (el.hasAttribute('data-alpine-was-cloaked')) {
                 var _el$getAttribute3;
                 el.setAttribute('x-cloak', (_el$getAttribute3 = el.getAttribute('data-alpine-was-cloaked')) !== null && _el$getAttribute3 !== void 0 ? _el$getAttribute3 : '');
